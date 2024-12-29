@@ -22,22 +22,20 @@ To write a python program to implement multivariate linear regression and predic
 
 ## Program:
 ```
-import numpy as np
-from matplotlib import pyplot
-X=np.array(eval(input()))
-Y=np.array(eval(input()))
-Xmean=np.mean(X)
-Ymean=np.mean(Y)
-num,den=0,0
-for i in range(len(X)):
-  num+=(X[i]-Xmean)*(Y[i]-Ymean)
-  den+=(X[i]-Xmean)**2
-slope=num/den
-c=Ymean-slope*Xmean
-y_pred=slope*X+C
-pyplot.scatter(X,Y,color='red')
-pyplot.plot(X,y_pred,color='blue')
-pyplot.show()
+import pandas as pd
+from sklearn import linear_model
+df =pd.read_csv("carsemission.csv")
+X = df[['Weight', 'Volume']]
+y = df['CO2']
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+print('Coefficients:', regr.coef_)
+print('Intercept:', regr.intercept_)
+input_data = pd.DataFrame({'Weight': [3300], 'Volume': [1300]})
+predictedCO2 = regr.predict(input_data)
+print('Predicted CO2 for the corresponding weight and volume:',predictedCO2)
+
+
 ```
 ## Output:
 ```
