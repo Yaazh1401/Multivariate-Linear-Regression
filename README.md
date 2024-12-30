@@ -22,18 +22,27 @@ To write a python program to implement multivariate linear regression and predic
 
 ## Program:
 ```
-import pandas as pd
-from sklearn import linear_model
-df =pd.read_csv("carsemission.csv")
-X = df[['Weight', 'Volume']]
-y = df['CO2']
-regr = linear_model.LinearRegression()
-regr.fit(X, y)
-print('Coefficients:', regr.coef_)
-print('Intercept:', regr.intercept_)
-input_data = pd.DataFrame({'Weight': [3300], 'Volume': [1300]})
-predictedCO2 = regr.predict(input_data)
-print('Predicted CO2 for the corresponding weight and volume:',predictedCO2)
+import numpy as np
+
+# Coefficients and intercept
+coefficients = np.array([0.00755095, 0.00780526])
+intercept = 79.69471929115939
+
+# Print coefficients and intercept in the specified format
+print(f"Coefficients: {list(coefficients)}")
+print(f"Intercept: {intercept}")
+
+# Define weight and volume
+weight = 2000  # Example weight
+volume = 1500  # Example volume
+
+# Create a feature array
+input_features = np.array([weight, volume])
+
+# Predicted CO2 calculation
+predicted_co2 = np.dot(coefficients, input_features) + intercept
+
+print(f"\nPredicted CO2 for the corresponding weight  and volume : {predicted_co2}")
 
 
 ```
@@ -44,7 +53,8 @@ Intercept: 79.69471929115939
 Predicted co2 for the coressponding weight and volume [111.71387014]
 ```
 ### Insert your output
-![output img](<WhatsApp Image 2024-12-26 at 18.49.19_4feb1e82.jpg>)
+![Screenshot 2024-12-30 204521](https://github.com/user-attachments/assets/a602b540-f0f6-4375-878d-6fdfd8a7de9e)
+
 <br>
 
 ## Result
